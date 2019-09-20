@@ -1,1 +1,13 @@
+### Title: Python Numpy Note01
+### Time: 19-9-20
 
+### 回顾Python内置的常用数据结构：整数，字符串，列表，元组，字典，……
+# list:  []  list是一种有序的集合，可以随时添加和删除其中的元素 (可变的有序表)
+# tuple: ()  tuple有序，但其中的元素一经初始化便无法修改
+# dict: {}   按照key-value的形式存储，dict内部元素存储的顺序与key放入的顺序无关
+# set：([])  set和dict类似，也是一组key的集合，但不存储value, key不能重复
+
+### Numpy模块提供的新的数据结构： ndarray
+# nd: n dimension，表示对象具有n维
+# 数组的索引以0为下标开始
+# 存放的数据需要是同一类型
