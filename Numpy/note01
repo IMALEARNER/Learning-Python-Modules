@@ -1,3 +1,6 @@
+#!/usr/bin/env python 
+# -*- coding:utf-8 -*-
+
 ### Title: Python Numpy Note01
 ### Time: 19-9-20
 
@@ -11,3 +14,23 @@
 # nd: n dimension，表示对象具有n维
 # 数组的索引以0为下标开始
 # 存放的数据需要是同一类型
+
+### Numpy支持比Python更多种类的数值类型：bool_,int_,intc,uint64,complex128……
+
+# 调用Numpy中ndarray的方法:array函数
+np.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)
+# object：数组存储的对象（必选）
+# dtype: 输出数组的数据类型
+# copy：对象是否需要复制
+# order：创建数组的样式。C：按行方向，F：按列，A：任意方向（default）
+# subok：subok 默认情况下，返回的数组被强制为基类数组。 如果为true，则返回子类
+# ndmin: 指定生成数组的最小维度
+
+
+# 例子
+import numpy as np
+a = np.array([1,2,3,4],ndmin=2)
+print(a)   ## [[1 2 3 4]]
+print('number of dim:',a.ndim)   ## number of dim: 2
+print('shape:', a.shape)  ## shape: (1, 4)
+print('size:', a.size)  ## size: 4
