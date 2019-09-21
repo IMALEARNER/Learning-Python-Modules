@@ -3,4 +3,4 @@
 ### Welcome to talking to me about Python, R, and more about data
 `(Updating...)`
 
-![from baidu](https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=332884396,1181664535&fm=26&gp=0.jpg)
+![image](https://github.com/IMALEARNER/Learning-Python-Modules/blob/master/timg.jpg)
