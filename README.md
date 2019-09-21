@@ -3,4 +3,4 @@
 ### Welcome to talking to me about Python, R, and more about data
 `(Updating...)`
 
-![image](https://github.com/IMALEARNER/Learning-Python-Modules/blob/master/timg.jpg)
+![image](https://github.com/IMALEARNER/Learning-Python-Modules/blob/master/timg%20(2).jpg)
