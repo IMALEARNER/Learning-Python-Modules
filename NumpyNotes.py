@@ -53,7 +53,7 @@ print(x)
 # asarray函数
 numpy.asarray(a, dtype, order)
 # a: 任意形式的输入参数。可以是list,tuple,多维ndarray
-# 例子：
+# eg：
 import numpy as np
 x = (1, 2, 3)
 a = np.asarray(x)
@@ -68,7 +68,7 @@ numpy.frombuffer(buffer, dtype, count, offset)
 # fromiter函数：实现可迭代对象
 numpy.fromiter(iterable, dtype, count)
 # iterable:可迭代对象
-# 例子：
+# eg：
 import numpy as np
 list = range(10)
 it = iter(list)
@@ -79,7 +79,7 @@ print(x)
 # 创建给定步长序列
 numpy.arange(start, stop, step, dtype)
 # step：给定步长，默认为1
-# 例子：
+# eg：
 import numpy as np
 x = np.arange(10,19,2)
 print(x)  ## [10 12 14 16 18]
@@ -88,7 +88,7 @@ np.linspace(start, stop, num, endpoint, retstep, dtype)
 # num:等步长的样本数量，默认为50
 # endpoint：该值为Ture则数列中中包含stop值。默认True
 # retstep： 为True时，生成的数组中会显示间距
-# 例子：
+# eg：
 import numpy as np
 a = np.linspace(1,10,10)
 print(a)  ## [ 1.  2.  3.  4.  5.  6.  7.  8.  9. 10.]
@@ -96,7 +96,7 @@ print(a)  ## [ 1.  2.  3.  4.  5.  6.  7.  8.  9. 10.]
 np.logspace(start, stop, num=50, endpoint=True, base=10.0, dtype=None)
 # stop：序列的终止值为base ** stop
 # base: 对数 log 的底数
-# 例子：
+# eg：
 import numpy as np
 a = np.logspace(0,9,10,base=2)
 print (a)  ## [  1.   2.   4.   8.  16.  32.  64. 128. 256. 512.]
@@ -135,7 +135,7 @@ numpy.dtype(object, align, copy)
 # align: 如果为True,填充字段使其类似 C 的结构体
 # copy: 复制对象,如果为False则引用对象
 
-# 例子：
+# eg：
 import numpy as np
 dt_int = np.dtype(np.intc)
 dt_age = np.dtype([('age',np.int8)])
@@ -145,12 +145,147 @@ print(a['age'])  ## [10 20 30]
 
 
 ##################################################
-###### 1.4 数组切片和索引
+###### 1.4 索引
+
+### Numpy使用Python一般的整数和切片的索引
+### 此外，Numpy也使用整数数组索引、布尔索引及花式索引
+
+### 整数数组索引
+# eg:
+import numpy as np
+x = np.array([[1, 2], [3, 4], [5, 6]])
+y = x[[0, 1, 2], [0, 1, 0]]
+print(y)  ## [1  4  5]
+
+### 布尔索引
+# eg:
+import numpy as np
+x = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]])
+print(x)
+print('\n')
+print('大于 5 的元素是：')
+print(x[x > 5])
+
+### 花式索引
+# eg:
+import numpy as np
+x = np.arange(32).reshape((8, 4))
+print(x[[4, 2, 1, 7]])
+y = np.arange(32).reshape((8,4))
+print (y[[-4,-2,-1,-7]])
+
+
+##################################################
+###### 1.5 广播
+# 当数组算术运算中的2个数组的形状不同时，将自动触发Numpy的广播机制
+
+
+##################################################
+###### 1.6 迭代数组
+for x in np.nditer(a, order, op_flags, flags)
+    ###
+
+##################################################
+###### 1.7 位运算
+
+bitwise_and()   # 对数组中整数元素的二进制形式按位取与，同&
+bitwise_or()   # 对数组中整数元素的二进制形式按位取或，同|
+invert()   # 按位取反，同~
+left_shift()  # 数组元素的二进制形式向左移动指定位数，右侧以0填补
+# eg:
+import numpy as np
+print(np.left_shift(10,2))   ## 40
+right_shift()  # 数组元素的二进制形式向右移动指定位数，左侧以0填补
+
+
+##################################################
+###### 1.8 字符串运算
+
+### 逐个连接两个字符串数组的元素
+numpy.char.add()
+# eg1:
+import numpy as np
+print(np.char.add(['Hello,'],['World']))  ## ['Hello,World']
+# eg2:
+import numpy as np
+a = np.array(['Hello,','is'])
+b = ('this',' NumPy')
+print(np.char.add(a,np.asarray(b)))  ## ['Hello,this' 'is Python']
+
+### 字符串多重连接
+numpy.char.multiply()
+# eg:
+import numpy as np
+print(np.char.multiply('ABC',10))  ## ABCABCABCABCABCABCABCABCABCABC
+
+### 字符串居中显示
+numpy.char.center()
+# eg:
+import numpy as np
+print(np.char.center('I am who I am',30,'+'))  ## ++++++++I am who I am+++++++++
+
+### 字符串首字母大写
+numpy.char.capitalize()
+### 字符串每个单词首字母大写
+numpy.char.title()
+### 字符串所有字母大写
+numpy.char.upper()
+### 字符串所有字母大写
+numpy.char.lower()
+# eg:
+import numpy as np
+print(np.char.capitalize('I am a happy coder ^ ^'))   ## I am a happy coder ^ ^
+print(np.char.title('I am a happy coder ^ ^'))   ## I Am A Happy Coder ^ ^
+print(np.char.upper('I am a happy coder ^ ^'))   ## I AM A HAPPY CODER ^ ^
+print(np.char.lower(np.char.upper('I am a happy coder ^ ^')))   ## i am a happy coder ^ ^
+
+### 对单个字符串进行分割
+numpy.char.split()  ## numpy.char.split() 通过指定分隔符对字符串进行分割，并返回数组。默认情况下，分隔符为空格。
+### 以换行符(\n,\r)作为分隔符来分割字符串，并返回数组
+numpy.char.splitlines()
+# eg:
+import numpy as np
+print(np.char.split('Python or Java ?'))  ## ['Python', 'or', 'Java', '?']
+print(np.char.split('Thomas-Muller',sep='-'))  ## ['Thomas', 'Muller']
+print(np.char.splitlines('I like Python,\nit makes me happy'))
+
+### 移除字符串中开头或结尾处的特定字符
+numpy.char.strip()
+# eg:
+import numpy as np
+print (np.char.strip(['java','ajax','andriod'],'a'))  ## ['jav' 'jax' 'ndriod']
+
+### 使用指定分隔符连接数组中的元素或字符串
+numpy.char.join()
+# eg:
+import numpy as np
+print (np.char.join(':','ABCDE'))  ## A:B:C:D:E
+print (np.char.join([':','-'],['huawei','google']))  ## ['h:u:a:w:e:i' 'g-o-o-g-l-e']
+
+### 使用新字符串替换字符串中的目标子串
+numpy.char.replace()
+# eg:
+import numpy as np
+print(np.char.replace('My phone is Apple', 'pp', 'bb'))  ## My phone is Abble
+
+### 对数组中的每个元素调用 str.encode 函数。默认编码格式为utf-8
+numpy.char.encode()
+### 对编码的元素进行 str.decode() 解码
+numpy.char.decode()
+# eg:
+import numpy as np
+print(np.char.encode('ios gene'))  ## b'ios gene'
+print(np.char.encode('ios gene', 'cp500'))  ## b'\x89\x96\xa2@\x87\x85\x95\x85'
+print(np.char.decode(np.char.encode('ios gene')))  ## ios gene
+
+
+##################################################
+###### 1.9 数学函数总结
 
 
 ##################################################
 ##### 太长不看版-函数总结 (待补充)
 import numpy as np
-np.ndarray()
+ny.char.strip()
 
 
